@@ -1,7 +1,7 @@
 const mercadopago = require('mercadopago');
 
 const INTEGRATOR_ID = 'dev_24c65fb163bf11ea96500242ac130004';
-const ACCESS_TOKEN = 'TEST-5803173797352206-050918-eaf289baab83a68af05297e96f458a9a-1120797873'
+const ACCESS_TOKEN = 'APP_USR-5803173797352206-050918-e3faf048a99e583771de8f2d1fb47065-1120797873'
 mercadopago.configure({
   access_token: ACCESS_TOKEN,
   integrator_id: INTEGRATOR_ID,

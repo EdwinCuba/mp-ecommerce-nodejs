@@ -1,0 +1,103 @@
+<style>
+  .payment-status-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .payment-status-card {
+    width: 50%;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-shadow: 5px 5px 30px 1px gray;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .payment-status-card.failure {
+    background-color: rgb(255, 218, 218);
+  }
+  .payment-status-card.pending {
+    background-color: rgb(255, 255, 203);
+  }
+  .payment-status-card.success {
+    background-color: rgb(215, 255, 215);
+  }
+
+  .payment-status-card h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;;
+  }
+
+  .payment-status-data {
+    width: 100%;
+  }
+  .payment-status-data-item {
+    display: flex;
+    justify-content: space-between;
+  }
+  .payment-status-data-item .property {
+    font-weight: bold;
+  }
+
+  .payment-status-back {
+    margin-top: 1rem;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: blue;
+    border-radius: 5px;
+    color: white;
+  }
+  .payment-status-back:hover {
+    text-decoration: none;
+  }
+</style>
+<div class="payment-status-container ">
+  <div class="payment-status-card {{ status }}">
+    <h1 class="payment-status-title" >{{ title }}</h1>
+    
+    <div class="payment-status-data">
+      <div class="payment-status-data-item">
+        <span class="property">ID del pago:</span>
+        <span>{{ paymentId }}</span>
+      </div>
+      <div class="payment-status-data-item">
+        <span class="property">ID del coleccion:</span>
+        <span>{{ collectionId }}</span>
+      </div>
+       <div class="payment-status-data-item">
+        <span class="property">Estado de la coleccion:</span>
+        <span>{{ collectionStatus }}</span>
+      </div>
+      <div class="payment-status-data-item">
+        <span class="property">ID del sitio:</span>
+        <span>{{ siteId }}</span>
+      </div>
+      <div class="payment-status-data-item">
+        <span class="property">Modo de procesamiento:</span>
+        <span>{{ processingMode }}</span>
+      </div>
+      <div class="payment-status-data-item">
+        <span class="property">ID de comercio:</span>
+        <span>{{ merchantId }}</span>
+      </div>
+      <div class="payment-status-data-item">
+        <span class="property">Referencia externa:</span>
+        <span>{{ reference }}</span>
+      </div>
+       <div class="payment-status-data-item">
+        <span class="property">Tipo de pago:</span>
+        <span>{{ paymentType }}</span>
+      </div>
+      <div class="payment-status-data-item">
+        <span class="property">Metodo de pago:</span>
+        <span>{{ paymentMethod }}</span>
+      </div>
+    </div>
+
+    <a href="/" class="payment-status-back">Volver al inicio</a>
+  </div>
+</div>

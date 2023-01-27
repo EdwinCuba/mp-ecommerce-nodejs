@@ -1,0 +1,221 @@
+    <div class="as-search-results as-filter-open as-category-landing as-desktop" id="as-search-results">
+
+        <div id="accessories-tab" class="as-accessories-details">
+            <div class="as-accessories" id="as-accessories">
+                <div class="as-accessories-header">
+                    <div class="as-search-results-count">
+                        <span class="as-search-results-value"></span>
+                    </div>
+                </div>
+                <div class="as-searchnav-placeholder" style="height: 77px;">
+                    <div class="row as-search-navbar" id="as-search-navbar" style="width: auto;">
+                        <div class="as-accessories-filter-tile column large-6 small-3">
+
+                            <button class="as-filter-button" aria-expanded="true" aria-controls="as-search-filters" type="button">
+                                <h2 class=" as-filter-button-text">
+                                    Smartphones
+                                </h2>
+                            </button>
+
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="as-accessories-results  as-search-desktop">
+                    <div class="width:60%">
+                        <div class="as-producttile-tilehero with-paddlenav " style="float:left;">
+                            <div class="as-dummy-container as-dummy-img">
+
+                                <img src="./assets/wireless-headphones" class="ir ir item-image as-producttile-image  " style="max-width: 70%;max-height: 70%;"alt="" width="445" height="445">
+                            </div>
+                            <div class="images mini-gallery gal5 ">
+                            
+
+                                <div class="as-isdesktop with-paddlenav with-paddlenav-onhover">
+                                    <div class="clearfix image-list xs-no-js as-util-relatedlink relatedlink" data-relatedlink="6|Powerbeats3 Wireless Earphones - Neighborhood Collection - Brick Red|MPXP2">
+                                        <div class="as-tilegallery-element as-image-selected">
+                                            <div class=""></div>
+                                            <img src="./assets/003.jpg" class="ir ir item-image as-producttile-image" alt="" width="445" height="445" style="content:-webkit-image-set(url({{ img }}) 2x);">
+                                        </div>
+                                        
+                                    </div>
+
+                                    
+                                </div>
+
+                                
+
+                            </div>
+
+                        </div>
+                        <div class="as-producttile-info" style="float:left;min-height: 168px;">
+                            <div class="as-producttile-titlepricewraper" style="min-height: 128px;">
+                                <div class="as-producttile-title">
+                                    <h3 class="as-producttile-name">
+                                        <p class="as-producttile-tilelink">
+                                            <span data-ase-truncate="2"> {{ title }} </span>
+                                        </p>
+
+                                    </h3>
+                                </div>
+                                <h3 >
+                                    {{ price }}
+                                </h3>
+                                <h3 >
+                                    {{ unit }}
+                                </h3>
+                            </div>
+                            <button id="mercadopago-button" class="mercadopago-button">Pagar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .payment-form {
+        z-index: 10;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.35);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .payment-form h3 {
+        margin: 0;
+        margin-bottom: .5rem;
+    }
+
+    .payment-form-content {
+        min-width: 40%;
+        padding: 1rem 2rem;
+        background-color: white;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+    }
+    
+    .payment-form-item {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .payment-form-item h4,
+    .payment-form-item span {
+        margin: 0;
+    }
+
+    .paymwnt-form-close-modal {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        text-align: center;
+        top: 10px;
+        right: 10px;
+        color: white;
+        border-radius: 50%;
+        cursor: pointer;
+        background-color: black;
+    }
+    
+</style>
+<div class="payment-form" style="display: none;">
+    <div class="payment-form-content">
+        <span class="paymwnt-form-close-modal">X</span>
+        <h3>Finalizar compra</h3>
+        <div style="width: 100%;">
+            <div class="payment-form-item">
+                <p><b>Product</b></p>
+                <h4>{{ title }}</h4>
+            </div>
+            <div class="payment-form-item">
+                <p><b>Cantidad</b></p>
+                <span>{{ unit }}</span>
+            </div>
+            <div class="payment-form-item">
+                <p><b>Total</b></p>
+                <span>{{ price }}</span>
+            </div>
+        </div>
+        <div id="checkout-button"></div>
+    </div>
+</div>
+
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+<script type="text/javascript">
+    const PUBLIC_KEY = 'TEST-1636a0d8-2f90-4ab6-85e2-320908e8dc1b'
+    const mp = new MercadoPago(PUBLIC_KEY, {
+        locale: 'es-PE'
+    });
+
+    const createPreference = async () => {
+        const payer = {
+            firstName: 'Lalo',
+            lastName: 'Landa',
+            email: 'test_user_81131286@testuser.com',
+            phone: 957990496,
+            address: {
+                streetName: 'calle falsa',
+                streetNumber: 123,
+                zipCode: '07016'
+            },
+        }
+
+        const product = {
+            id: "1234",
+            name: "{{ title }}",
+            description: "Dispositivo móvil de Tienda e-commerce",
+            imageUrl: "{{ img }}".slice(1),
+            quantity: 1,
+            price: Number   ("{{ price }}"),
+        }
+
+        const deviceId = MP_DEVICE_SESSION_ID;
+
+        const requestConfig = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ deviceId, payer, product }),
+        }
+
+        const response = await fetch('/create-preference', requestConfig)
+        const preference = await response.json();
+        return preference;
+    }
+
+    const modal = document.getElementsByClassName('payment-form')[0];
+
+    const closeModalBtn = document.getElementsByClassName('paymwnt-form-close-modal')[0];
+    closeModalBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+        const mercadoPagoBtn = document.querySelector('#checkout-button .mercadopago-button');
+        if (mercadoPagoBtn) mercadoPagoBtn.remove();
+    });
+
+    const paymentButton = document.getElementById('mercadopago-button');
+    paymentButton.addEventListener('click', async () => {
+        const preference = await createPreference();
+        await mp.checkout({
+            preference: {
+                id: preference.id
+            },
+            render: {
+                container: '#checkout-button',
+                label: 'Pagar la compra',
+            }
+        }); 
+        modal.style.display = 'flex';
+    })
+</script>
